@@ -16,7 +16,7 @@ RUN apt update && \
 	 apt-add-repository ppa:webupd8team/java && \
 	 apt update && \
 	 echo debconf shared/accepted-oracle-license-v1-1 select true |  debconf-set-selections && \
-	 apt -y install libffi-dev postgresql-9.5 libpq-dev python3.5 python3-virtualenv virtualenv python3-pip redis-server redis-tools unzip file qt5-default git gcc-multilib g++-multilib xvfb fluxbox build-essential curl wget lib32stdc++6 lib32z1 oracle-java8-installer expect  &&  \ 
+	 apt -y install libffi-dev postgresql-9.5 libpq-dev python3.5 python3-virtualenv virtualenv python3-pip redis-server redis-tools unzip file qt5-default git gcc-multilib g++-multilib xvfb fluxbox build-essential curl wget lib32stdc++6 lib32z1 oracle-java8-installer expect chromium-browser &&  \ 
     pip3 install -U pip setuptools wheel && \
 	curl -sL https://deb.nodesource.com/setup_7.x | bash -  && \
 	apt-get install -y nodejs && \	
