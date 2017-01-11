@@ -7,9 +7,9 @@ ENV CONFIG_FILE /data/teamcity_agent/conf/buildAgent.properties
 LABEL dockerImage.teamcity.version="latest" \
       dockerImage.teamcity.buildNumber="latest"
 
+COPY dist/buildagent /opt/buildagent
 COPY run-agent.sh /run-agent.sh
 COPY run-services.sh /run-services.sh
-COPY dist/buildagent /opt/buildagent
 
 RUN apt update && \
 	 apt -y install --no-install-recommends software-properties-common && \
@@ -35,14 +35,13 @@ RUN mkdir /opt/android-sdk && cd /opt/android-sdk && wget --output-document=andr
   unzip android-sdk.zip && \
   rm -f android-sdk.zip && \
   chown -R root.root . && \
-  /opt/tools/android-accept-licenses.sh "tools/bin/sdkmanager build-tools;24.0.3 ndk-bundle platform-tools platforms;android-24 tools" && tools/bin/sdkmanager --list
+  /opt/tools/android-accept-licenses.sh "tools/bin/sdkmanager build-tools;24.0.3 ndk-bundle platform-tools platforms;android-24 tools" 
 
 
 # Setup environment
 ENV ANDROID_HOME /opt/android-sdk
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 RUN echo y | android --silent update sdk --no-ui --all --filter sys-img-x86_64-google_apis-24
-RUN android list targets 
 
 # Create emulator
 RUN echo "no" | android create avd \
