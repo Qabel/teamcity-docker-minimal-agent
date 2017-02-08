@@ -23,7 +23,9 @@ RUN apt update && \
 	 apt-get clean && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY tools /opt/tools
-
+RUN mkdir /root/.ssh
+COPY conf/id_ed25519 /root/.ssh
+COPY conf/sshconfig /root/.ssh/config
 ENV PATH ${PATH}:/opt/tools
 RUN useradd -mp "" qabel
 
