@@ -10,7 +10,7 @@ check() {
 configure() {
   if [ $2 ]; then
     echo "run agent.sh configure" $1 $2
-    ${AGENT_DIST}/bin/agent.sh configure $1 $2; check
+   ${AGENT_DIST}/bin/agent.sh configure $1 $2; check
   fi
 }
 
@@ -48,7 +48,7 @@ else
    prepare_conf
 fi
 
-${AGENT_DIST}/bin/agent.sh start
+exec gosu qabel ${AGENT_DIST}/bin/agent.sh start
 
 while [ ! -f ${LOG_DIR}/teamcity-agent.log ];
 do
