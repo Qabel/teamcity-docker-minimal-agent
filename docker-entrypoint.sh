@@ -3,7 +3,6 @@ if [ -z "$SERVER_URL" ]; then
     echo "SERVER_URL variable not set, launch with -e TEAMCITY_SERVER=http://mybuildserver"
     exit 1
 fi
-AGENT_DIR=/home/qabel/buildAgent
 if [ ! -d "$AGENT_DIR/bin" ]; then
     echo "$AGENT_DIR doesn't exist pulling build-agent from server $SERVER_URL";
     let waiting=0
@@ -22,5 +21,6 @@ if [ ! -d "$AGENT_DIR/bin" ]; then
 fi
 
 echo "Starting buildagent..."
-
-/home/qabel/buildAgent/bin/agent.sh run
+#cd /opt/buildAgent
+#mkdir logs
+/opt/buildAgent/bin/agent.sh run

@@ -1,6 +1,7 @@
 FROM ubuntu:16.04
 
 MAINTAINER Niklas Rust <rust@qabel.de>
+ENV AGENT_DIR  /opt/buildAgent
 RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && \
     locale-gen
 
@@ -57,7 +58,6 @@ COPY conf/sshconfig /home/qabel/.ssh/config
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 RUN chmod +x /docker-entrypoint.sh 
-USER qabel
 CMD ["/docker-entrypoint.sh"]
 VOLUME /opt/buildAgent
 EXPOSE 9090
